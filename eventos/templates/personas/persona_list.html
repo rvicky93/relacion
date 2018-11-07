@@ -1,0 +1,35 @@
+{% extends 'personas/base.html' %}
+{% block content %}
+<div class="container">
+  <h1>Lista de Personas <a href="{% url 'persona_nueva' %}" class="btn btn-success">Nuevo</a></h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for persona in personas %}
+          <tr class="table-active">
+            <th>{{persona.nombre}}</th>
+            <th>{{persona.telefono}}</th>
+            <th>{{persona.direccion}}</th>
+            <th>{{persona.correo}}</th>
+            <th>{{persona.fecha_nacimiento}}</th>
+            <th>
+              <a href="{% url 'persona_detalle' pk=persona.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span>Detalle</a>
+              <a href="{% url 'persona_editar' pk=persona.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+              <a href="{% url 'persona_eliminar' pk=persona.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+</div>
+{% endblock %}

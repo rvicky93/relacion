@@ -1,0 +1,31 @@
+{% extends 'eventos/base.html' %}
+{% block content %}
+<div class="container">
+  <h1>Lista de eventos <a href="{% url 'evento_nuevo' %}" class="btn btn-success">Nuevo</a></h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for evento in eventos %}
+          <tr class="table-active">
+            <th>{{evento.nombre}}</th>
+            <th>{{evento.descripcion}}</th>
+            <th>{{evento.fecha}}</th>
+            <th>
+              <a href="{% url 'evento_detalle' pk=evento.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span>Detalle</a>
+              <a href="{% url 'evento_editar' pk=evento.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil">Editar</span></a>
+              <a href="{% url 'evento_eliminar' pk=evento.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
+            </th>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}
